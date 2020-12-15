@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HM RINDAM</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-dtree/dist/dTree.min.js"></script>
+    <style>
+        body {
+            font: 10px sans-serif;
+        }
+
+        .linage {
+            fill: none;
+            stroke: #000;
+        }
+
+        .marriage {
+            fill: none;
+            stroke: black;
+        }
+
+        .man {
+            background-color: lightblue;
+            border-style: solid;
+            border-width: 1px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .woman {
+            background-color: pink;
+            border-style: solid;
+            border-width: 1px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .emphasis {
+            font-style: italic;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        svg {
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        .male-image {
+            width: 100px;
+            height: 100px;
+            background-image: url(https://cdn1.vectorstock.com/i/1000x1000/40/60/people-icon-male-and-female-signs-avatar-symbol-vector-18274060.jpg);
+            background-size: 194%;
+            background-position-x: -6%;
+            background-position-y: 33%;
+            background-color: white;
+            background-repeat: no-repeat;
+            margin-bottom: 10px;
+        }
+
+        .female-image {
+            width: 100px;
+            height: 100px;
+            background-image: url(https://cdn1.vectorstock.com/i/1000x1000/40/60/people-icon-male-and-female-signs-avatar-symbol-vector-18274060.jpg);
+            background-size: 194%;
+            background-position-x: 109%;
+            background-position-y: 33%;
+            background-color: white;
+            background-repeat: no-repeat;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>KELUARGA HM RINDAM</h1>
+    <div id="graph"></div>
+
+    <script>
+        treeData = [{
+            "name": "Cayut",
+            "class": "man",
+            "textClass": "emphasis",
+            "extra": {
+                sex: "M",
+            },
+            "marriages": [{
+                "spouse": {
+                    "name": "Hj Mariah",
+                    "class": "woman",
+                    "extra": {
+                        sex: "F",
+                    }
+                },
+                "children": [
+                    {
+                        "name": "Hj. Shopiah",
+                        "class": "woman",
+                        extra: {
+                            nickname: "Warmen",
+                        },
+                        "marriages": [{
+                            "spouse": {
+                                "name": "H Zain",
+                                "class": "man",
+                                "extra": {
+                                    sex: "M",
+                                }
+                            },
+                        }],
+                        children: [
+                            {
+                                "name": "H. Mashudi",
+                                "class": "man",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Hj Afriyah",
+                                        "class": "woman",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "H. Jamil",
+                                "class": "man",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Hj Sawiyah",
+                                        "class": "woman",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Siyad",
+                                "class": "man",
+
+                            },
+                            {
+                                "name": "Kastiyah",
+                                "class": "woman",
+                                "extra": {
+                                    sex: "F",
+                                },
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Silam",
+                                        "class": "man",
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Moh Dali",
+                                "class": "man",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Dariyem",
+                                        "class": "woman",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Muhari",
+                                "class": "man",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Sijah",
+                                        "class": "woman",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Aisyah",
+                                "class": "woman",
+                                "extra": {
+                                    sex: "F",
+                                },
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Said S",
+                                        "class": "man",
+
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Su'ud",
+                                "class": "man",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Wasem",
+                                        "class": "woman",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Mu'idah",
+                                "class": "woman",
+                                "extra": {
+                                    sex: "F",
+                                },
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "H Sudargo",
+                                        "class": "man",
+
+                                    },
+                                }],
+                            },
+
+                        ]
+                    },
+                    {
+                        "name": "H. Akhsan",
+                        "class": "man",
+
+                        "marriages": [{
+                            "spouse": {
+                                "name": "Saryu",
+                                "class": "woman",
+                                "extra": {
+                                    sex: "F",
+                                }
+                            },
+                        }],
+                        children: [
+                            {
+                                "name": "Karyuni",
+                                "class": "woman",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Kodri",
+                                        "class": "man",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Klentheng",
+                                "class": "man",
+                                "extra": {
+                                    nickname: "Ali",
+                                },
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "rubikha",
+                                        "class": "woman",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Sayud",
+                                "class": "man",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Asidah",
+                                        "class": "woman",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                "name": "Ripah",
+                                "class": "woman",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Wadri",
+                                        "class": "man",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    },
+                                }],
+                            },
+                            {
+                                name: 'Dasri',
+                                class: 'woman'
+                            }
+                        ]
+                    },
+                    {
+                        "name": "H. Abdul G",
+                        "class": "man",
+                        "extra": {
+                            nickname: "Sujan",
+                        },
+                        "marriages": [{
+                            "spouse": {
+                                "name": "Saryep",
+                                "class": "woman",
+                                "extra": {
+                                    sex: "F",
+                                }
+                            },
+                        }]
+                    },
+                    {
+                        "name": "H. Abdul R",
+                        "class": "man",
+                        "extra": {
+                            nickname: "Sunyan",
+                        },
+                        "marriages": [{
+                            "spouse": {
+                                "name": "Kuat",
+                                "class": "woman",
+                                "extra": {
+                                    sex: "F",
+                                }
+                            },
+                        }]
+                    },
+                    {
+                        "name": "Hj. Fatimah",
+                        "class": "woman",
+                        extra: {
+                            nickname: "Suryi",
+                        },
+                        "marriages": [{
+                            "spouse": {
+                                "name": "H Ambari",
+                                "class": "man",
+                                "extra": {
+                                    sex: "M",
+                                }
+                            },
+                        }]
+                    },
+                    {
+                        "name": "H Mukhlas",
+                        "class": "man",
+                        extra: {
+                            nickname: "Tamat",
+                        },
+                        "marriages": [{
+                            "spouse": {
+                                "name": "Darkiyah",
+                                "class": "woman",
+                                "extra": {
+                                    sex: "F",
+                                }
+                            },
+                            "children": [{
+                                id: 'root',
+                                "name": "H Rindam",
+                                "class": "man",
+                                "marriages": [{
+                                    "spouse": {
+                                        "name": "Hj Siti Muinah",
+                                        "class": "woman",
+                                        "extra": {
+                                            sex: "F",
+                                        }
+                                    }
+                                }],
+                                children: [{
+                                    name: "H. Kusaeri",
+                                    class: 'man',
+                                    extra: {
+                                        nickname: "Kus",
+                                        bod: 'Brebes, 19 Desember 1943',
+                                        dead: '-',
+                                        sex: 'M',
+                                        address: 'Tegalglagah - Brebes'
+                                    },
+                                    marriages: [{
+                                        spouse: {
+                                            name: 'Hj. Sutiah',
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Tiah",
+                                                bod: 'Brebes, 24 September 1945',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah - Brebes'
+                                            }
+                                        }
+                                    }],
+                                    children: [{
+                                        name: "Maslikha",
+                                        class: 'woman',
+                                        extra: {
+                                            nickname: "",
+                                            bod: '-',
+                                            dead: '-',
+                                            sex: 'M',
+                                            address: '-'
+                                        },
+                                        marriages: [{
+                                            spouse: {
+                                                name: 'Wakhid',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "-",
+                                                    bod: '-',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: '-'
+                                                }
+                                            }
+                                        }],
+                                        children: [{
+                                            name: "Samsul Maarif",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "",
+                                                bod: '-',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: '-'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'April',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "-",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                }
+                                            }],
+                                            children: [{
+                                                name: "Ikbal",
+                                                class: 'man',
+
+                                            }, {
+                                                name: "Refa",
+                                                class: 'man',
+
+                                            }]
+                                        },
+                                        {
+                                            name: "Miftakhurohman",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "",
+                                                bod: '-',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: '-'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: '-',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "-",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                }
+                                            }],
+                                            children: [{
+                                                name: "Nafa",
+                                                class: 'woman',
+
+                                            }]
+                                        },
+                                        ]
+                                    },
+                                    {
+                                        name: "Hj. Naely Farikha",
+                                        class: 'woman',
+                                        extra: {
+                                            nickname: "Par",
+                                            bod: '-',
+                                            dead: '-',
+                                            sex: 'M',
+                                            address: '-'
+                                        },
+                                        marriages: [{
+                                            spouse: {
+                                                name: 'H. A. Yunus',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "-",
+                                                    bod: '-',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: '-'
+                                                }
+                                            }
+                                        }],
+                                        children: [
+                                            {
+                                                name: "Rosmalia Kamil",
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "Ros",
+                                                    bod: 'Brebes, 19 Oktober 1987',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: 'Tegalglagah Brebes'
+                                                },
+                                                marriages: [{
+                                                    spouse: {
+                                                        name: 'Indra Mulyawan',
+                                                        class: 'man',
+                                                        extra: {
+                                                            nickname: "-",
+                                                            bod: 'Brebes, 22 Februari 1986',
+                                                            dead: '-',
+                                                            sex: 'M',
+                                                            address: '-'
+                                                        }
+                                                    }
+                                                }],
+                                                children: [{
+                                                    name: 'Auxilia Febriana Mulyawan',
+                                                    class: 'woman'
+                                                }]
+                                            },
+                                            {
+                                                name: "Fatkhia Nuraminin",
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: 'Brebes, 7Juni 1989',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: 'Tegalglagah Brebes'
+                                                },
+                                                marriages: [{
+                                                    spouse: {
+                                                        name: 'Kandar Tri S.',
+                                                        class: 'man',
+                                                        extra: {
+                                                            nickname: "-",
+                                                            bod: 'Brebes, 11 Februari 1986',
+                                                            dead: '-',
+                                                            sex: 'M',
+                                                            address: '-'
+                                                        }
+                                                    }
+                                                }],
+                                                children: [{
+                                                    name: 'Inara Khaerinasir',
+                                                    class: 'woman'
+                                                }]
+                                            },
+                                            {
+                                                name: "Abidia Kamil",
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: 'Brebes, 17 Oktober 1999',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: 'Tegalglagah Brebes'
+                                                },
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        name: "Jabidi",
+                                        class: 'man',
+                                        extra: {
+                                            nickname: "",
+                                            bod: '-',
+                                            dead: '-',
+                                            sex: 'M',
+                                            address: '-'
+                                        },
+                                        marriages: [{
+                                            spouse: {
+                                                name: 'Muniroh',
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "Niroh",
+                                                    bod: '-',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: '-'
+                                                }
+                                            }
+                                        }],
+                                        children: [{
+                                            name: 'Aji Santoso',
+                                            class: 'man',
+                                        }, {
+                                            name: 'Gunawan Santoso',
+                                            class: 'man'
+                                        }]
+                                    },
+                                    {
+                                        name: "Tofik",
+                                        class: 'man',
+                                        extra: {
+                                            nickname: "",
+                                            bod: '-',
+                                            dead: '-',
+                                            sex: 'M',
+                                            address: 'Tegalglagah - Brebes'
+                                        },
+                                        marriages: [{
+                                            spouse: {
+                                                name: 'Masturoh',
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "-",
+                                                    bod: '-',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: 'Tegalglagah - Brebes'
+                                                }
+                                            }
+                                        }],
+                                        children: [{
+                                            name: 'Eva Ayu Fatikhah',
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Eva",
+                                                bod: '-',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Tegalglagah - Brebes'
+                                            }
+                                        },
+                                        {
+                                            name: 'Ivana Maya Cantika',
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Maya",
+                                                bod: '-',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Tegalglagah - Brebes'
+                                            }
+                                        },
+                                        {
+                                            name: 'Naela Zulfa Ramadhani',
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Nela",
+                                                bod: '-',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Tegalglagah - Brebes'
+                                            }
+                                        }]
+                                    },
+                                    {
+                                        name: "H. Masruri",
+                                        class: 'man',
+                                        extra: {
+                                            nickname: "Mas",
+                                            bod: 'Brebes, 10 Maret 1974',
+                                            dead: '-',
+                                            sex: 'M',
+                                            address: 'Tegalglagah - Brebes'
+                                        },
+                                        marriages: [{
+                                            spouse: {
+                                                name: 'Hj. Khulaeli',
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "Eli",
+                                                    bod: 'Brebes, 10 Oktober 1976',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: 'Tegalglagah - Brebes'
+                                                }
+                                            }
+                                        }],
+                                        children: [{
+                                            name: 'M. Sofyan Irfani',
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Sofyan",
+                                                bod: 'Brebes, 27 Oktober 2002',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Tegalglagah - Brebes'
+                                            }
+                                        }]
+                                    },
+                                    {
+                                        name: "Fitria Widyati",
+                                        class: 'woman',
+                                        extra: {
+                                            nickname: "Pipit",
+                                            bod: '-',
+                                            dead: '-',
+                                            sex: 'F',
+                                            address: 'Tegalglagah Brebes'
+                                        },
+                                        marriages: [{
+                                            spouse: {
+                                                name: 'Herdi Nugroho',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "-",
+                                                    bod: '',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: '-'
+                                                }
+                                            }
+                                        }],
+                                        children: [{
+                                            name: 'Firas Adiyatma',
+                                            class: 'man'
+                                        }]
+                                    },
+                                    ]
+                                },
+                                {
+                                    name: "H. M. Sofan MM",
+                                    class: 'man',
+                                    extra: {
+                                        nickname: "Sofan",
+                                        bod: 'Brebes, 16 Januari 1945',
+                                        dead: '-',
+                                        sex: 'M',
+                                        address: 'Tegalglagah - Brebes'
+                                    },
+                                    marriages: [{
+                                        spouse: {
+                                            name: 'Hj. Siti Maryamah',
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Yam",
+                                                bod: 'Boyolali, 22 April 1947',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah - Brebes'
+                                            }
+                                        }
+                                    }],
+                                    children: [
+                                        {
+                                            name: "Hj. Nur Fatikha Rahmi",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Nunung",
+                                                bod: 'Brebes, 23 Januari 1975',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: '-'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'H. Adilin',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Adilin",
+                                                        bod: 'Gumawang, 2 Juli 1970',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                }
+                                            }],
+                                            children: [{
+                                                name: 'Fatimah Qurrota A’yun',
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "A'yun",
+                                                    bod: 'Semarang, 18 November 2003',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: '-'
+                                                }
+                                            }, {
+                                                name: 'Khadijah Hilyatu Ulinnuha',
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "A'yun",
+                                                    bod: 'Bogor, 2 Mei 2014',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: '-'
+                                                }
+                                            }]
+                                        },
+                                        {
+                                            name: "Hj. Ratnaningsih Hidayati",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Nana",
+                                                bod: 'Brebes, 19 Juli 1975',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: '-'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'H. Iman Triswahyudin',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Iman",
+                                                        bod: 'Cirebon, 15 Oktober 1977',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                }
+                                            }],
+                                            children: [{
+                                                name: 'M. Syauqi Al Fatih',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: 'Semarang, 13 Juni 2004',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: '-'
+                                                }
+                                            },
+                                            {
+                                                name: 'Fathiya Nurul Mumtaz',
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: 'Semarang, 23 Oktober 2008',
+                                                    dead: '-',
+                                                    sex: 'F',
+                                                    address: '-'
+                                                }
+                                            }]
+                                        },
+                                        {
+                                            name: "Hj. Nikmah Faiqoh",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Nikmah",
+                                                bod: 'Brebes, 1 November 1987',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: '-'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'H. Tatwanto Prastistho',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "-",
+                                                        bod: 'Yogyakarta, 10 Mei 1977',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: 'Nabila Husna Abidah',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: 'Yogyakarta, 15 November 2005',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: '-'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Syarifah Yumma Sholihah',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: 'Pekanbaru, 30 Juni 2008',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: '-'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Fathinah Khansa Rosyidah',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: 'Sleman, 15 Februari 2010',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: '-'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Najma Tsaqib',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: 'Depok, 16 Mei 2012',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: '-'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Amir Fadhil Abdurahman',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: 'Depok, 1 September 2014',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Afrin Nayla',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: 'Depok, 2 Februari 2018',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                    ]
+                                },
+                                {
+                                    name: "Tamam Sari Irsad",
+                                    class: 'man',
+                                    extra: {
+                                        nickname: "Tamam",
+                                        bod: 'Brebes, 17 September 1947',
+                                        dead: '-',
+                                        sex: 'M',
+                                        address: 'Tegalglagah - Brebes'
+                                    },
+                                    marriages: [{
+                                        spouse: {
+                                            name: 'Masanding ',
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "masindah",
+                                                bod: '- , 16 Maret 1963',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah - Brebes'
+                                            }
+                                        }
+                                    }],
+                                    children: [
+                                        {
+                                            name: "Oni Sandi Guna, SE",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Oni",
+                                                bod: 'Brebes, 15 Desember 1988',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah - Brebes'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Musyarofah',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "-",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah - Brebes'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: 'M. Mazyin Amanullah',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Ahmad Ghaftan Assidiq',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: '-'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "Niko Ardiansyah",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Ardi",
+                                                bod: 'Brebes, 15 Desember 1988',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah - Brebes'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Siti Rodiah',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "-",
+                                                        bod: 'Brebes, 6 Juni 1990',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah - Brebes'
+                                                    }
+                                                }
+                                            }],
+                                            children: [{
+                                                name: 'M. Gibran Arrayan',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: '',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: '-'
+                                                }
+                                            }]
+                                        },
+                                    ]
+                                },
+                                {
+                                    name: "Hj. Kusumawati",
+                                    class: 'woman',
+                                    extra: {
+                                        nickname: "Mayati",
+                                        bod: '-',
+                                        dead: '-',
+                                        sex: 'M',
+                                        address: 'Tegalglagah - Brebes'
+                                    },
+                                    marriages: [{
+                                        spouse: {
+                                            name: 'H. Mardono',
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "dono",
+                                                bod: '- ',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah - Brebes'
+                                            }
+                                        }
+                                    }],
+                                    children: [
+                                        {
+                                            name: "Hj. Arifah Setiati",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "-",
+                                                bod: 'Brebes, 13 Mei 1969',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah - Brebes'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'H. Mohammad Prabowo',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "-",
+                                                        bod: 'Brebes, 12 Mmei 1964',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah - Brebes'
+                                                    }
+                                                }
+                                            }],
+                                            children: [{
+                                                name: 'Wildan F. Abdillah',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: 'Brebes, 27 November 1992',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: '-'
+                                                }
+                                            }, {
+                                                name: 'Farah Al Rohmatun N.',
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: 'Brebes, 2 November 1997',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: '-'
+                                                }
+                                            }, {
+                                                name: 'Muzayyinul Husein',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: 'Brebes, 25 Mei 2009',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: '-'
+                                                }
+                                            }]
+                                        },
+                                        {
+                                            name: "Agus Ashari",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Ardi",
+                                                bod: '-',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Bandung'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Budi Yunellistiyati',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "-",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Bandung'
+                                                    }
+                                                }
+                                            }],
+                                            children: [{
+                                                name: 'M. Dani Fachrurozy',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: '',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: 'Bandung'
+                                                }
+                                            },
+                                            {
+                                                name: 'Mutia Ilma Fauziah',
+                                                class: 'woman',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: '',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: 'Bandung'
+                                                }
+                                            },
+                                            {
+                                                name: 'M. Luqman Al Ghifani',
+                                                class: 'man',
+                                                extra: {
+                                                    nickname: "",
+                                                    bod: '',
+                                                    dead: '-',
+                                                    sex: 'M',
+                                                    address: 'Bandung'
+                                                }
+                                            }]
+                                        },
+                                        {
+                                            name: "Amaliah Sofiatun",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Atun",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Tegalglagah - Brebes'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Saiful Komar',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Sepul",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Tegalglagah - Brebes'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: 'Hanifah Nadia Febriani',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "Febri",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Tegalglagah - Brebes'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Faridatun Nisa Nabila Septiani',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "Nabila",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Tegalglagah - Brebes'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "H. Afif Setiawan",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Apip",
+                                                bod: '-',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Purworejo'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Hj. Nuk Ariyanti',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "-",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Purworejo'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: 'Salma Mufidah Avicena',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "Salma",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Purworejo'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                    ]
+                                },
+                                {
+                                    name: "H. Thobari",
+                                    class: 'man',
+                                    extra: {
+                                        nickname: "Thobari",
+                                        bod: '-',
+                                        dead: '-',
+                                        sex: 'M',
+                                        address: 'Semarang'
+                                    },
+                                    marriages: [{
+                                        spouse: {
+                                            name: 'Hj. Supranti ',
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Pranti",
+                                                bod: '- ',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Semarang'
+                                            }
+                                        }
+                                    }],
+                                    children: [
+                                        {
+                                            name: "Risanti",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Santi",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Semarang'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Sosi Agung R',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Sosi",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Semarang'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: 'Neylan Safira',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Semarang'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "Anita",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Nita",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Semarang'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Adi Yuda Permana',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Semarang'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: 'Piersa Permana',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Semarang'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Buby Xander Sen P.',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Semarang'
+                                                    }
+                                                },
+                                                {
+                                                    name: 'Buby Xander Sen P.',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Semarang'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                    ]
+                                },
+                                {
+                                    name: "Hj. Sumeriyati",
+                                    class: 'woman',
+                                    extra: {
+                                        nickname: "Meri",
+                                        bod: '-',
+                                        dead: '-',
+                                        sex: 'M',
+                                        address: 'Tegalglagah Brebes'
+                                    },
+                                    marriages: [{
+                                        spouse: {
+                                            name: 'H. Zainul Ma’arif B H Hasan Bisri',
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Enul",
+                                                bod: '- ',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah Brebes'
+                                            }
+                                        }
+                                    }],
+                                    children: [
+                                        {
+                                            name: "M Syifa Mubarok",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Sifa",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Semarang'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Maratussolihah ',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "Aah",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Semarang'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: 'Humaira Zakiyatunnufus',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Brebes, 6 September 2012",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Semarang'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "Zaki In'ami",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "In'am",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah - Brebes'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Humaidah',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "Medah",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah - Brebes'
+                                                    }
+                                                }
+                                            }]
+                                        },
+                                        {
+                                            name: "Isti'anah",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Iis",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Tegalglagah - Brebes'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Ulul Albab',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Ulul",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Tegalglagah - Brebes'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Alaena Achla Ni'mah",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Semarang'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                    ]
+                                },
+                                {
+                                    name: "H. Samiun",
+                                    class: 'man',
+                                    extra: {
+                                        nickname: "Miun",
+                                        bod: '-',
+                                        dead: '-',
+                                        sex: 'M',
+                                        address: 'Kebumen'
+                                    },
+                                    marriages: [{
+                                        spouse: {
+                                            name: 'Hj. Siti Qomariah',
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "",
+                                                bod: '- ',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Kebumen'
+                                            }
+                                        }
+                                    }],
+                                    children: [
+                                        {
+                                            name: "Imam Syarifuddin",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Imam",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Aceh'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Hasna',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Aceh'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Sarah",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Aceh'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Salsabila",
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Aceh'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Abdullah",
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Aceh'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Syaima",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Aceh'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "Muhammad Amin Manshur",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Amin",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Kebumen'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Hana Amalina',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Raihanah Al-Atsarityah",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Aceh'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Asiyah As-Salafiyyah",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Aceh'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "Abdullah Umar",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Umar",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Kebumen'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Sofiyatun',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Ar-Rubayyi",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Nabilah",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Hafshoh",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Maryam",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "Muhammad Shobarul Haq",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Barul",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Kebumen'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Faiqoh',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Nailah Nurul Jannah",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Nafisah Ummu Sulaim",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Naufal As-Saidy",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                                {
+                                                    name: "Na'im Ash-Shobri",
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "Ummu Atikah",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Tika",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'F',
+                                                address: 'Kebumen'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Amin Sukahar',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Kebumen'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Abdurrohman Ibnu Amin",
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                },
+                                            ]
+                                        },
+                                        {
+                                            name: "Abu Rifqi",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Abu",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Kebumen'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Husna',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Kebumen'
+                                                    }
+                                                }
+                                            }]
+                                        },
+                                        {
+                                            name: "Abdussalam",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Abdu",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Kebumen'
+                                            },
+
+                                        },
+                                    ]
+                                },
+                                {
+                                    name: "Hj. Samirah",
+                                    class: 'woman',
+                                    extra: {
+                                        nickname: "Samir",
+                                        bod: '-',
+                                        dead: '-',
+                                        sex: 'M',
+                                        address: 'Tegalglagah Brebes'
+                                    },
+                                    marriages: [{
+                                        spouse: {
+                                            name: 'H. Abdurrahman B H Tohir',
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Dur",
+                                                bod: '- ',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah Brebes'
+                                            }
+                                        }
+                                    }],
+                                    children: [
+                                        {
+                                            name: "Ahmad Al Azhar",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Amad",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah Brebes'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Rosi Kumala Dewi ',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah Brebes'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Ahmad Rosi Fathurrohman",
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Fatur",
+                                                        bod: ' ',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah Brebes'
+                                                    },
+                                                },
+                                                {
+                                                    name: "Ahmad Rosi Al Fakhri",
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Fakhri",
+                                                        bod: ' ',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah Brebes'
+                                                    },
+                                                },
+                                                {
+                                                    name: "Rosi Ahmad  Farhannisa",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "Nisa",
+                                                        bod: ' ',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah Brebes'
+                                                    },
+                                                },
+                                                {
+                                                    name: "Rosi Ahmad As Syifa",
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Sifa",
+                                                        bod: ' ',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah Brebes'
+                                                    },
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            name: "Nurul Hidayah",
+                                            class: 'woman',
+                                            extra: {
+                                                nickname: "Dayah",
+                                                bod: '',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Tegalglagah Brebes'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: 'Anton',
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "",
+                                                        bod: '-',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah Brebes'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Ainaya Januba An Nur",
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "Ain",
+                                                        bod: ' ',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Tegalglagah Brebes'
+                                                    },
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            name: "Imam Baehaqi",
+                                            class: 'man',
+                                            extra: {
+                                                nickname: "Haqi",
+                                                bod: 'Brebes, 2 Agustus 1990',
+                                                dead: '-',
+                                                sex: 'M',
+                                                address: 'Pontianak'
+                                            },
+                                            marriages: [{
+                                                spouse: {
+                                                    name: ' Wulandari Mustika ',
+                                                    class: 'woman',
+                                                    extra: {
+                                                        nickname: "Wulan",
+                                                        bod: 'sintang, 21 Desember 1990',
+                                                        dead: '-',
+                                                        sex: 'F',
+                                                        address: 'Pontianak'
+                                                    }
+                                                }
+                                            }],
+                                            children: [
+                                                {
+                                                    name: "Keanu Attaya Rahman",
+                                                    class: 'man',
+                                                    extra: {
+                                                        nickname: "Keanu",
+                                                        bod: 'Pontianak, 15 Juni 2018',
+                                                        dead: '-',
+                                                        sex: 'M',
+                                                        address: 'Pontianak'
+                                                    },
+                                                }
+                                            ]
+                                        },
+                                    ]
+                                }]
+                            }, {
+                                "name": "Jane",
+                                "class": "woman"
+                            }, {
+                                "name": "Jasper",
+                                "class": "man"
+                            }, {
+                                "name": "Emma",
+                                "class": "woman"
+                            }, {
+                                "name": "Julia",
+                                "class": "woman"
+                            }, {
+                                "name": "Jessica",
+                                "class": "woman"
+                            }]
+                        }]
+                    },
+                    {
+                        "name": "Hj. Maemunah",
+                        "class": "woman",
+                        extra: {
+                            nickname: "Waryunah",
+                        },
+                        "marriages": [{
+                            "spouse": {
+                                "name": "H Khafandi",
+                                "class": "man",
+                                "extra": {
+                                    sex: "M",
+                                }
+                            },
+                        }]
+                    },]
+            }]
+        }]
+
+
+        const height = window.outerHeight - 64;
+        const width = window.outerWidth;
+        const tree = dTree.init(treeData, {
+            target: "#graph",
+            debug: true,
+            height: height,
+            width: width,
+            nodeWidth: 200,
+            callbacks: {
+                nodeClick: function (name, extra) {
+                    console.log(name);
+                },
+                textRenderer: function (name, extra, textClass) {
+                    // THis callback is optinal but can be used to customize
+                    // how the text is rendered without having to rewrite the entire node
+                    // from screatch.
+                    let photo = "<div class='male-image'></div>";
+                    if (extra && extra.sex === 'F') {
+                        photo = "<div class='female-image'></div>";
+                    }
+                    let nametag = "<p align='left' style='font-weight: bold' class='" + textClass + "'>Nama : " + name + " </p>";
+                    let nickname = "<p align='left' class='" + textClass + "'>Panggilan : - </p>";
+                    let born = "<p align='left' class='" + textClass + "'> TTL : - </p>";
+                    let dead = "<p align='left' class='" + textClass + "'> Wafat : - </p>";
+                    let sex = "<p align='left' class='" + textClass + "'> Kelamin : - </p>";
+                    let address = "<p align='left' class='" + textClass + "'> Alamat : - </p>";
+
+                    if (extra && extra.photo)
+                        photo = "<img style='width: 100px;height: 100px;' src='" + extra.photo + "'/>";
+                    if (extra && extra.nickname)
+                        nickname = "<p align='left' class='" + textClass + "'> Panggilan : " + extra.nickname + " </p>";
+                    if (extra && extra.born)
+                        born = "<p align='left' class='" + textClass + "'>  TTL : " + extra.born + " </p>";
+                    if (extra && extra.dead)
+                        dead = "<p align='left' class='" + textClass + "'>  Wafat : " + extra.dead + " </p>";
+                    if (extra && extra.sex)
+                        sex = "<p align='left' class='" + textClass + "'>  Kelamin : " + (extra.sex === 'F' ? 'Perempuan' : 'Laki-laki') + " </p>";
+                    if (extra && extra.address)
+                        address = "<p align='left' class='" + textClass + "'>  Alamat : " + extra.address + " </p>";
+
+                    return photo + nametag + nickname + born + dead + sex + address;
+                },
+                nodeRenderer: function (name, x, y, height, width, extra, id, nodeClass, textClass, textRenderer) {
+                    // This callback is optional but can be used to customize the
+                    // node element using HTML.
+                    let node = '';
+                    node += '<div ';
+                    node += 'style="height:100%;width:100%;" ';
+                    node += 'class="' + nodeClass + '" ';
+                    node += 'id="node' + id + '">\n';
+                    node += textRenderer(name, extra, textClass);
+                    node += '</div>';
+                    return node;
+                }
+            }
+        });
+        setTimeout(() => {
+
+            tree.zoomToFit(500)
+        }, 500);
+    </script>
+</body>
+
+</html>
